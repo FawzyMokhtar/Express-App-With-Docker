@@ -1,0 +1,16 @@
+{
+  "name": "express-app-with-docker",
+  "version": "1.0.0",
+  "author": {
+    "name": "Fawzy Mokhtar",
+    "url": "https://github.com/FawzyMokhtar"
+  },
+  "main": "app.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
