@@ -35,7 +35,7 @@ This is a simple express app deployed with docker.
 
   2. You should see this message
      ```bash
-     Express server is up & running on port 3000
+     Express server is up & running on port 8080
      ```
 
 - ### Deploy to a Docker Container
