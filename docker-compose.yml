@@ -1,6 +1,35 @@
 version: '3'
 services:
+  # Our express app.
   web:
+    # The location of express app Dockerfile.
     build: .
+    # We tell docker to map the port 8080 in our HOST to the CONTAINER port 8080
+    # So we can access express app from HOST machine on http://localhost:8080
     ports:
-      - "8080:8080"
+      - '8080:8080'
+    # We tell docker that to not start web container until db container is started.
+    # It just wait until the db container is started not until it is started and ready.
+    depends_on:
+      - 'db'
+  db:
+    # The image that will be used to create the db container.
+    image: mysql
+    # Use mysql_native_password as the default authentication method.
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    # Set environment variables for MySQL server.
+    environment:
+      # The name of the root user, default is root.
+      MYSQL_USER: root
+      # The password of the root user.
+      MYSQL_ROOT_PASSWORD: fawzy
+      # An optional name of the database to be created with the server start
+      # In our case it's mandatory.
+      MYSQL_DATABASE: express-app-with-docker-db
+    # We tell docker to map the port 5050 in our HOST to the CONTAINER port 3306
+    # Port 3306 is the default port for the MySQL server.
+    # So we can access the database from HOST machine on http://localhost:5050
+    # Our from any any other machine http://{OUR_LOCAL_HOST_IP}:5050
+    ports:
+      - '5050:3306'
